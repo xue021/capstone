@@ -1,0 +1,3 @@
+row,date,type,price,shares,balance,lastAmountSpent,fee,profit
+0,2015-09-03,buy,1.26,791.2698412698412,0.0,1000.0,3.0,0
+934,2018-03-25,sell,524.29,0.0,413610.31,1000.0,1244.56,412610.31

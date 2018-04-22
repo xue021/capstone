@@ -1,0 +1,1661 @@
+<?xml version='1.0' encoding='utf-8'?>
+<interface>
+  <object class="ttk.Frame" id="MainContainer">
+    <property name="borderwidth">1</property>
+    <property name="cursor">arrow</property>
+    <property name="height">720</property>
+    <property name="padding">5</property>
+    <property name="width">1080</property>
+    <layout>
+      <property name="column">0</property>
+      <property name="propagate">True</property>
+      <property name="row">0</property>
+      <property name="sticky">nw</property>
+      <columns>
+        <column id="0">
+          <property name="minsize">5</property>
+        </column>
+      </columns>
+      <rows>
+        <row id="0">
+          <property name="minsize">5</property>
+        </row>
+      </rows>
+    </layout>
+    <child>
+      <object class="ttk.Frame" id="Top">
+        <property name="height">200</property>
+        <property name="width">200</property>
+        <layout>
+          <property name="column">0</property>
+          <property name="propagate">True</property>
+          <property name="row">0</property>
+          <property name="sticky">nw</property>
+        </layout>
+        <child>
+          <object class="ttk.Combobox" id="dropdownData">
+            <property name="exportselection">true</property>
+            <property name="state">readonly</property>
+            <property name="width">30</property>
+            <layout>
+              <property name="column">1</property>
+              <property name="propagate">True</property>
+              <property name="row">0</property>
+              <property name="sticky">w</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="ttk.Label" id="lblSelectData">
+            <property name="font">TkFixedFont</property>
+            <property name="text" translatable="yes">Select Marketdata:</property>
+            <layout>
+              <property name="column">0</property>
+              <property name="propagate">True</property>
+              <property name="row">0</property>
+              <property name="sticky">e</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="ttk.Button" id="btnUpdate">
+            <property name="command">btnUpdatePressed</property>
+            <property name="text" translatable="yes">Update</property>
+            <layout>
+              <property name="column">1</property>
+              <property name="pady">5</property>
+              <property name="propagate">True</property>
+              <property name="row">2</property>
+              <property name="sticky">w</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="ttk.Label" id="lblUpdate">
+            <property name="font">TkFixedFont</property>
+            <property name="text" translatable="yes">Update Thresholds:</property>
+            <layout>
+              <property name="column">0</property>
+              <property name="pady">5</property>
+              <property name="propagate">True</property>
+              <property name="row">2</property>
+              <property name="sticky">e</property>
+            </layout>
+          </object>
+        </child>
+      </object>
+    </child>
+    <child>
+      <object class="ttk.Frame" id="Strategy">
+        <property name="height">200</property>
+        <property name="relief">groove</property>
+        <property name="width">200</property>
+        <layout>
+          <property name="column">0</property>
+          <property name="propagate">True</property>
+          <property name="row">1</property>
+          <property name="sticky">nw</property>
+        </layout>
+        <child>
+          <object class="ttk.Notebook" id="tabs_BuySellOptions">
+            <property name="height">400</property>
+            <property name="padding">5</property>
+            <property name="width">350</property>
+            <layout>
+              <property name="column">0</property>
+              <property name="propagate">True</property>
+              <property name="row">0</property>
+              <property name="sticky">nw</property>
+            </layout>
+            <child>
+              <object class="ttk.Notebook.Tab" id="tabBuy">
+                <property name="text" translatable="yes">Buy</property>
+                <child>
+                  <object class="ttk.Frame" id="frameBuy">
+                    <property name="height">200</property>
+                    <property name="width">200</property>
+                    <layout>
+                      <property name="column">0</property>
+                      <property name="propagate">True</property>
+                      <property name="row">0</property>
+                      <property name="sticky">nw</property>
+                    </layout>
+                    <child>
+                      <object class="ttk.Label" id="lblBuyMACD">
+                        <property name="text" translatable="yes">MACD:</property>
+                        <layout>
+                          <property name="column">0</property>
+                          <property name="padx">10</property>
+                          <property name="pady">5</property>
+                          <property name="propagate">True</property>
+                          <property name="row">0</property>
+                          <property name="sticky">e</property>
+                        </layout>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="ttk.Label" id="lblBuySTF">
+                        <property name="text" translatable="yes">Stoch Fast:</property>
+                        <layout>
+                          <property name="column">0</property>
+                          <property name="padx">10</property>
+                          <property name="pady">5</property>
+                          <property name="propagate">True</property>
+                          <property name="row">1</property>
+                          <property name="sticky">e</property>
+                        </layout>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="ttk.Label" id="lblBuySTS">
+                        <property name="text" translatable="yes">Stoch Slow:</property>
+                        <layout>
+                          <property name="column">0</property>
+                          <property name="padx">10</property>
+                          <property name="pady">5</property>
+                          <property name="propagate">True</property>
+                          <property name="row">2</property>
+                          <property name="sticky">e</property>
+                        </layout>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="ttk.Label" id="lblBuySTV">
+                        <property name="text" translatable="yes">Stoch Volume:</property>
+                        <layout>
+                          <property name="column">0</property>
+                          <property name="padx">10</property>
+                          <property name="pady">5</property>
+                          <property name="propagate">True</property>
+                          <property name="row">3</property>
+                          <property name="sticky">e</property>
+                        </layout>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="ttk.Label" id="lblBuySMI">
+                        <property name="text" translatable="yes">SMI:</property>
+                        <layout>
+                          <property name="column">0</property>
+                          <property name="padx">10</property>
+                          <property name="pady">5</property>
+                          <property name="propagate">True</property>
+                          <property name="row">4</property>
+                          <property name="sticky">e</property>
+                        </layout>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="ttk.Label" id="lblBuyRSI">
+                        <property name="text" translatable="yes">RSI:</property>
+                        <layout>
+                          <property name="column">0</property>
+                          <property name="padx">10</property>
+                          <property name="pady">5</property>
+                          <property name="propagate">True</property>
+                          <property name="row">5</property>
+                          <property name="sticky">e</property>
+                        </layout>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="ttk.Label" id="lblBuyDMI_DX">
+                        <property name="text" translatable="yes">DMI DX:</property>
+                        <layout>
+                          <property name="column">0</property>
+                          <property name="padx">10</property>
+                          <property name="pady">5</property>
+                          <property name="propagate">True</property>
+                          <property name="row">6</property>
+                          <property name="sticky">e</property>
+                        </layout>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="ttk.Label" id="lblBuyDMI_ADX">
+                        <property name="text" translatable="yes">DMI Avg DX:</property>
+                        <layout>
+                          <property name="column">0</property>
+                          <property name="padx">10</property>
+                          <property name="pady">5</property>
+                          <property name="propagate">True</property>
+                          <property name="row">7</property>
+                          <property name="sticky">e</property>
+                        </layout>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="ttk.Scale" id="sliderBuyMACD">
+                        <property name="command">sliderUpdateBuy0</property>
+                        <property name="from_">-10</property>
+                        <property name="orient">horizontal</property>
+                        <property name="to">10</property>
+                        <property name="value">0</property>
+                        <property name="variable">double:sliderBuyval0</property>
+                        <layout>
+                          <property name="column">2</property>
+                          <property name="padx">10</property>
+                          <property name="pady">5</property>
+                          <property name="propagate">True</property>
+                          <property name="row">0</property>
+                          <property name="sticky">w</property>
+                        </layout>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="ttk.Combobox" id="dropdownBuyMACD">
+                        <property name="values">ignore &lt; &gt;</property>
+                        <property name="width">10</property>
+                        <layout>
+                          <property name="column">1</property>
+                          <property name="propagate">True</property>
+                          <property name="row">0</property>
+                        </layout>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="ttk.Combobox" id="dropdownBuySTF">
+                        <property name="values">ignore &lt; &gt;</property>
+                        <property name="width">10</property>
+                        <layout>
+                          <property name="column">1</property>
+                          <property name="propagate">True</property>
+                          <property name="row">1</property>
+                        </layout>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="ttk.Combobox" id="dropdownBuySTS">
+                        <property name="values">ignore &lt; &gt;</property>
+                        <property name="width">10</property>
+                        <layout>
+                          <property name="column">1</property>
+                          <property name="propagate">True</property>
+                          <property name="row">2</property>
+                        </layout>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="ttk.Combobox" id="dropdownBuySTV">
+                        <property name="values">ignore &lt; &gt;</property>
+                        <property name="width">10</property>
+                        <layout>
+                          <property name="column">1</property>
+                          <property name="propagate">True</property>
+                          <property name="row">3</property>
+                        </layout>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="ttk.Combobox" id="dropdownBuySMI">
+                        <property name="values">ignore &lt; &gt;</property>
+                        <property name="width">10</property>
+                        <layout>
+                          <property name="column">1</property>
+                          <property name="propagate">True</property>
+                          <property name="row">4</property>
+                        </layout>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="ttk.Combobox" id="dropdownBuyRSI">
+                        <property name="height">0</property>
+                        <property name="values">ignore &lt; &gt;</property>
+                        <property name="width">10</property>
+                        <layout>
+                          <property name="column">1</property>
+                          <property name="propagate">True</property>
+                          <property name="row">5</property>
+                        </layout>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="ttk.Combobox" id="dropdownBuyDMI_DX">
+                        <property name="values">ignore &lt; &gt;</property>
+                        <property name="width">10</property>
+                        <layout>
+                          <property name="column">1</property>
+                          <property name="propagate">True</property>
+                          <property name="row">6</property>
+                        </layout>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="ttk.Combobox" id="dropdownBuyDMI_ADX">
+                        <property name="values">ignore &lt; &gt;</property>
+                        <property name="width">10</property>
+                        <layout>
+                          <property name="column">1</property>
+                          <property name="propagate">True</property>
+                          <property name="row">7</property>
+                        </layout>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="ttk.Label" id="displayBuyMACD">
+                        <property name="text" translatable="yes">0</property>
+                        <layout>
+                          <property name="column">3</property>
+                          <property name="propagate">True</property>
+                          <property name="row">0</property>
+                        </layout>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="ttk.Label" id="displayBuySTF">
+                        <property name="text" translatable="yes">0</property>
+                        <layout>
+                          <property name="column">3</property>
+                          <property name="propagate">True</property>
+                          <property name="row">1</property>
+                        </layout>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="ttk.Label" id="displayBuySTS">
+                        <property name="text" translatable="yes">0</property>
+                        <layout>
+                          <property name="column">3</property>
+                          <property name="propagate">True</property>
+                          <property name="row">2</property>
+                        </layout>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="ttk.Label" id="displayBuySTV">
+                        <property name="text" translatable="yes">0</property>
+                        <layout>
+                          <property name="column">3</property>
+                          <property name="propagate">True</property>
+                          <property name="row">3</property>
+                        </layout>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="ttk.Label" id="displayBuySMI">
+                        <property name="text" translatable="yes">0</property>
+                        <layout>
+                          <property name="column">3</property>
+                          <property name="propagate">True</property>
+                          <property name="row">4</property>
+                        </layout>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="ttk.Label" id="displayBuyRSI">
+                        <property name="text" translatable="yes">0</property>
+                        <layout>
+                          <property name="column">3</property>
+                          <property name="propagate">True</property>
+                          <property name="row">5</property>
+                        </layout>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="ttk.Label" id="displayBuyDMI_DX">
+                        <property name="text" translatable="yes">0</property>
+                        <layout>
+                          <property name="column">3</property>
+                          <property name="propagate">True</property>
+                          <property name="row">6</property>
+                        </layout>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="ttk.Label" id="displayBuyDMI_ADX">
+                        <property name="text" translatable="yes">0</property>
+                        <layout>
+                          <property name="column">3</property>
+                          <property name="propagate">True</property>
+                          <property name="row">7</property>
+                        </layout>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="ttk.Scale" id="sliderBuySTF">
+                        <property name="command">sliderUpdateBuy1</property>
+                        <property name="from_">-10</property>
+                        <property name="orient">horizontal</property>
+                        <property name="to">10</property>
+                        <property name="value">0</property>
+                        <property name="variable">double:sliderBuyval1</property>
+                        <layout>
+                          <property name="column">2</property>
+                          <property name="padx">10</property>
+                          <property name="pady">5</property>
+                          <property name="propagate">True</property>
+                          <property name="row">1</property>
+                          <property name="sticky">w</property>
+                        </layout>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="ttk.Scale" id="sliderBuySTS">
+                        <property name="command">sliderUpdateBuy2</property>
+                        <property name="from_">-10</property>
+                        <property name="orient">horizontal</property>
+                        <property name="to">10</property>
+                        <property name="value">0</property>
+                        <property name="variable">double:sliderBuyval2</property>
+                        <layout>
+                          <property name="column">2</property>
+                          <property name="padx">10</property>
+                          <property name="pady">5</property>
+                          <property name="propagate">True</property>
+                          <property name="row">2</property>
+                          <property name="sticky">w</property>
+                        </layout>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="ttk.Scale" id="sliderBuySTV">
+                        <property name="command">sliderUpdateBuy3</property>
+                        <property name="from_">-10</property>
+                        <property name="orient">horizontal</property>
+                        <property name="to">10</property>
+                        <property name="value">0</property>
+                        <property name="variable">double:sliderBuyval3</property>
+                        <layout>
+                          <property name="column">2</property>
+                          <property name="padx">10</property>
+                          <property name="pady">5</property>
+                          <property name="propagate">True</property>
+                          <property name="row">3</property>
+                          <property name="sticky">w</property>
+                        </layout>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="ttk.Scale" id="sliderBuySMI">
+                        <property name="command">sliderUpdateBuy4</property>
+                        <property name="from_">-10</property>
+                        <property name="orient">horizontal</property>
+                        <property name="to">10</property>
+                        <property name="value">0</property>
+                        <property name="variable">double:sliderBuyval4</property>
+                        <layout>
+                          <property name="column">2</property>
+                          <property name="padx">10</property>
+                          <property name="pady">5</property>
+                          <property name="propagate">True</property>
+                          <property name="row">4</property>
+                          <property name="sticky">w</property>
+                        </layout>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="ttk.Scale" id="sliderBuyRSI">
+                        <property name="command">sliderUpdateBuy5</property>
+                        <property name="from_">-10</property>
+                        <property name="orient">horizontal</property>
+                        <property name="to">10</property>
+                        <property name="value">0</property>
+                        <property name="variable">double:sliderBuyval5</property>
+                        <layout>
+                          <property name="column">2</property>
+                          <property name="padx">10</property>
+                          <property name="pady">5</property>
+                          <property name="propagate">True</property>
+                          <property name="row">5</property>
+                          <property name="sticky">w</property>
+                        </layout>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="ttk.Scale" id="sliderBuyDMI_DX">
+                        <property name="command">sliderUpdateBuy6</property>
+                        <property name="from_">-10</property>
+                        <property name="orient">horizontal</property>
+                        <property name="to">10</property>
+                        <property name="value">0</property>
+                        <property name="variable">double:sliderBuyval6</property>
+                        <layout>
+                          <property name="column">2</property>
+                          <property name="padx">10</property>
+                          <property name="pady">5</property>
+                          <property name="propagate">True</property>
+                          <property name="row">6</property>
+                          <property name="sticky">w</property>
+                        </layout>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="ttk.Scale" id="sliderBuyDMI_ADX">
+                        <property name="command">sliderUpdateBuy7</property>
+                        <property name="from_">-10</property>
+                        <property name="orient">horizontal</property>
+                        <property name="to">10</property>
+                        <property name="value">0</property>
+                        <property name="variable">double:sliderBuyval7</property>
+                        <layout>
+                          <property name="column">2</property>
+                          <property name="padx">10</property>
+                          <property name="pady">5</property>
+                          <property name="propagate">True</property>
+                          <property name="row">7</property>
+                          <property name="sticky">w</property>
+                        </layout>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="ttk.Notebook.Tab" id="tabSell">
+                <property name="text" translatable="yes">Sell</property>
+                <child>
+                  <object class="ttk.Frame" id="frameSell">
+                    <property name="height">200</property>
+                    <property name="width">200</property>
+                    <layout>
+                      <property name="column">0</property>
+                      <property name="propagate">True</property>
+                      <property name="row">0</property>
+                      <property name="sticky">nw</property>
+                    </layout>
+                    <child>
+                      <object class="ttk.Label" id="lblSellMACD">
+                        <property name="text" translatable="yes">MACD:</property>
+                        <layout>
+                          <property name="column">0</property>
+                          <property name="padx">10</property>
+                          <property name="pady">5</property>
+                          <property name="propagate">True</property>
+                          <property name="row">0</property>
+                          <property name="sticky">e</property>
+                        </layout>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="ttk.Label" id="lblBuySTF_28">
+                        <property name="text" translatable="yes">Stoch Fast:</property>
+                        <layout>
+                          <property name="column">0</property>
+                          <property name="padx">10</property>
+                          <property name="pady">5</property>
+                          <property name="propagate">True</property>
+                          <property name="row">1</property>
+                          <property name="sticky">e</property>
+                        </layout>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="ttk.Label" id="lblBuySTS_29">
+                        <property name="text" translatable="yes">Stoch Slow:</property>
+                        <layout>
+                          <property name="column">0</property>
+                          <property name="padx">10</property>
+                          <property name="pady">5</property>
+                          <property name="propagate">True</property>
+                          <property name="row">2</property>
+                          <property name="sticky">e</property>
+                        </layout>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="ttk.Label" id="lblBuySTV_30">
+                        <property name="text" translatable="yes">Stoch Volume:</property>
+                        <layout>
+                          <property name="column">0</property>
+                          <property name="padx">10</property>
+                          <property name="pady">5</property>
+                          <property name="propagate">True</property>
+                          <property name="row">3</property>
+                          <property name="sticky">e</property>
+                        </layout>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="ttk.Label" id="lblBuySMI_31">
+                        <property name="text" translatable="yes">SMI:</property>
+                        <layout>
+                          <property name="column">0</property>
+                          <property name="padx">10</property>
+                          <property name="pady">5</property>
+                          <property name="propagate">True</property>
+                          <property name="row">4</property>
+                          <property name="sticky">e</property>
+                        </layout>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="ttk.Label" id="lblBuyRSI_32">
+                        <property name="text" translatable="yes">RSI:</property>
+                        <layout>
+                          <property name="column">0</property>
+                          <property name="padx">10</property>
+                          <property name="pady">5</property>
+                          <property name="propagate">True</property>
+                          <property name="row">5</property>
+                          <property name="sticky">e</property>
+                        </layout>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="ttk.Label" id="lblBuyDMI_DX_33">
+                        <property name="text" translatable="yes">DMI DX:</property>
+                        <layout>
+                          <property name="column">0</property>
+                          <property name="padx">10</property>
+                          <property name="pady">5</property>
+                          <property name="propagate">True</property>
+                          <property name="row">6</property>
+                          <property name="sticky">e</property>
+                        </layout>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="ttk.Label" id="lblBuyDMI_ADX_34">
+                        <property name="text" translatable="yes">DMI Avg DX:</property>
+                        <layout>
+                          <property name="column">0</property>
+                          <property name="padx">10</property>
+                          <property name="pady">5</property>
+                          <property name="propagate">True</property>
+                          <property name="row">7</property>
+                          <property name="sticky">e</property>
+                        </layout>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="ttk.Scale" id="sliderSellMACD">
+                        <property name="command">sliderUpdateSell0</property>
+                        <property name="from_">-10</property>
+                        <property name="orient">horizontal</property>
+                        <property name="to">10</property>
+                        <property name="value">0</property>
+                        <property name="variable">double:sliderSellval0</property>
+                        <layout>
+                          <property name="column">2</property>
+                          <property name="padx">10</property>
+                          <property name="pady">5</property>
+                          <property name="propagate">True</property>
+                          <property name="row">0</property>
+                          <property name="sticky">w</property>
+                        </layout>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="ttk.Combobox" id="dropdownSellMACD">
+                        <property name="values">ignore &lt; &gt;</property>
+                        <property name="width">10</property>
+                        <layout>
+                          <property name="column">1</property>
+                          <property name="propagate">True</property>
+                          <property name="row">0</property>
+                        </layout>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="ttk.Combobox" id="dropdownSellSTF">
+                        <property name="values">ignore &lt; &gt;</property>
+                        <property name="width">10</property>
+                        <layout>
+                          <property name="column">1</property>
+                          <property name="propagate">True</property>
+                          <property name="row">1</property>
+                        </layout>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="ttk.Combobox" id="dropdownSellSTS">
+                        <property name="values">ignore &lt; &gt;</property>
+                        <property name="width">10</property>
+                        <layout>
+                          <property name="column">1</property>
+                          <property name="propagate">True</property>
+                          <property name="row">2</property>
+                        </layout>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="ttk.Combobox" id="dropdownSellSTV">
+                        <property name="values">ignore &lt; &gt;</property>
+                        <property name="width">10</property>
+                        <layout>
+                          <property name="column">1</property>
+                          <property name="propagate">True</property>
+                          <property name="row">3</property>
+                        </layout>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="ttk.Combobox" id="dropdownSellSMI">
+                        <property name="values">ignore &lt; &gt;</property>
+                        <property name="width">10</property>
+                        <layout>
+                          <property name="column">1</property>
+                          <property name="propagate">True</property>
+                          <property name="row">4</property>
+                        </layout>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="ttk.Combobox" id="dropdownSellRSI">
+                        <property name="values">ignore &lt; &gt;</property>
+                        <property name="width">10</property>
+                        <layout>
+                          <property name="column">1</property>
+                          <property name="propagate">True</property>
+                          <property name="row">5</property>
+                        </layout>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="ttk.Combobox" id="dropdownSellDMI_DX">
+                        <property name="values">ignore &lt; &gt;</property>
+                        <property name="width">10</property>
+                        <layout>
+                          <property name="column">1</property>
+                          <property name="propagate">True</property>
+                          <property name="row">6</property>
+                        </layout>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="ttk.Combobox" id="dropdownSellDMI_ADX">
+                        <property name="values">ignore &lt; &gt;</property>
+                        <property name="width">10</property>
+                        <layout>
+                          <property name="column">1</property>
+                          <property name="propagate">True</property>
+                          <property name="row">7</property>
+                        </layout>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="ttk.Label" id="displaySellMACD">
+                        <property name="text" translatable="yes">0</property>
+                        <layout>
+                          <property name="column">3</property>
+                          <property name="propagate">True</property>
+                          <property name="row">0</property>
+                        </layout>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="ttk.Label" id="displaySellSTF">
+                        <property name="text" translatable="yes">0</property>
+                        <layout>
+                          <property name="column">3</property>
+                          <property name="propagate">True</property>
+                          <property name="row">1</property>
+                        </layout>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="ttk.Label" id="displaySellSTS">
+                        <property name="text" translatable="yes">0</property>
+                        <layout>
+                          <property name="column">3</property>
+                          <property name="propagate">True</property>
+                          <property name="row">2</property>
+                        </layout>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="ttk.Label" id="displaySellSTV">
+                        <property name="text" translatable="yes">0</property>
+                        <layout>
+                          <property name="column">3</property>
+                          <property name="propagate">True</property>
+                          <property name="row">3</property>
+                        </layout>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="ttk.Label" id="displaySellSMI">
+                        <property name="text" translatable="yes">0</property>
+                        <layout>
+                          <property name="column">3</property>
+                          <property name="propagate">True</property>
+                          <property name="row">4</property>
+                        </layout>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="ttk.Label" id="displaySellRSI">
+                        <property name="text" translatable="yes">0</property>
+                        <layout>
+                          <property name="column">3</property>
+                          <property name="propagate">True</property>
+                          <property name="row">5</property>
+                        </layout>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="ttk.Label" id="displaySellDMI_DX">
+                        <property name="text" translatable="yes">0</property>
+                        <layout>
+                          <property name="column">3</property>
+                          <property name="propagate">True</property>
+                          <property name="row">6</property>
+                        </layout>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="ttk.Label" id="displaySellDMI_ADX">
+                        <property name="text" translatable="yes">0</property>
+                        <layout>
+                          <property name="column">3</property>
+                          <property name="propagate">True</property>
+                          <property name="row">7</property>
+                        </layout>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="ttk.Scale" id="sliderSellSTF">
+                        <property name="command">sliderUpdateSell1</property>
+                        <property name="from_">-10</property>
+                        <property name="orient">horizontal</property>
+                        <property name="to">10</property>
+                        <property name="value">0</property>
+                        <property name="variable">double:sliderSellval1</property>
+                        <layout>
+                          <property name="column">2</property>
+                          <property name="padx">10</property>
+                          <property name="pady">5</property>
+                          <property name="propagate">True</property>
+                          <property name="row">1</property>
+                          <property name="sticky">w</property>
+                        </layout>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="ttk.Scale" id="sliderSellSTS">
+                        <property name="command">sliderUpdateSell2</property>
+                        <property name="from_">-10</property>
+                        <property name="orient">horizontal</property>
+                        <property name="to">10</property>
+                        <property name="value">0</property>
+                        <property name="variable">double:sliderSellval2</property>
+                        <layout>
+                          <property name="column">2</property>
+                          <property name="padx">10</property>
+                          <property name="pady">5</property>
+                          <property name="propagate">True</property>
+                          <property name="row">2</property>
+                          <property name="sticky">w</property>
+                        </layout>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="ttk.Scale" id="sliderSellSTV">
+                        <property name="command">sliderUpdateSell3</property>
+                        <property name="from_">-10</property>
+                        <property name="orient">horizontal</property>
+                        <property name="to">10</property>
+                        <property name="value">0</property>
+                        <property name="variable">double:sliderSellval3</property>
+                        <layout>
+                          <property name="column">2</property>
+                          <property name="padx">10</property>
+                          <property name="pady">5</property>
+                          <property name="propagate">True</property>
+                          <property name="row">3</property>
+                          <property name="sticky">w</property>
+                        </layout>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="ttk.Scale" id="sliderSellSMI">
+                        <property name="command">sliderUpdateSell4</property>
+                        <property name="from_">-10</property>
+                        <property name="orient">horizontal</property>
+                        <property name="to">10</property>
+                        <property name="value">0</property>
+                        <property name="variable">double:sliderSellval4</property>
+                        <layout>
+                          <property name="column">2</property>
+                          <property name="padx">10</property>
+                          <property name="pady">5</property>
+                          <property name="propagate">True</property>
+                          <property name="row">4</property>
+                          <property name="sticky">w</property>
+                        </layout>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="ttk.Scale" id="sliderSellRSI">
+                        <property name="command">sliderUpdateSell5</property>
+                        <property name="from_">-10</property>
+                        <property name="orient">horizontal</property>
+                        <property name="to">10</property>
+                        <property name="value">0</property>
+                        <property name="variable">double:sliderSellval5</property>
+                        <layout>
+                          <property name="column">2</property>
+                          <property name="padx">10</property>
+                          <property name="pady">5</property>
+                          <property name="propagate">True</property>
+                          <property name="row">5</property>
+                          <property name="sticky">w</property>
+                        </layout>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="ttk.Scale" id="sliderSellDMI_DX">
+                        <property name="command">sliderUpdateSell6</property>
+                        <property name="from_">-10</property>
+                        <property name="orient">horizontal</property>
+                        <property name="to">10</property>
+                        <property name="value">0</property>
+                        <property name="variable">double:sliderSellval6</property>
+                        <layout>
+                          <property name="column">2</property>
+                          <property name="padx">10</property>
+                          <property name="pady">5</property>
+                          <property name="propagate">True</property>
+                          <property name="row">6</property>
+                          <property name="sticky">w</property>
+                        </layout>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="ttk.Scale" id="sliderSellDMI_ADX">
+                        <property name="command">sliderUpdateSell7</property>
+                        <property name="from_">-10</property>
+                        <property name="orient">horizontal</property>
+                        <property name="to">10</property>
+                        <property name="value">0</property>
+                        <property name="variable">double:sliderSellval7</property>
+                        <layout>
+                          <property name="column">2</property>
+                          <property name="padx">10</property>
+                          <property name="pady">5</property>
+                          <property name="propagate">True</property>
+                          <property name="row">7</property>
+                          <property name="sticky">w</property>
+                        </layout>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="ttk.Notebook.Tab" id="tabOptions">
+                <property name="text" translatable="yes">Options</property>
+                <child>
+                  <object class="ttk.Frame" id="frameOptions">
+                    <property name="height">200</property>
+                    <property name="padding">5</property>
+                    <property name="width">200</property>
+                    <layout>
+                      <property name="column">0</property>
+                      <property name="propagate">True</property>
+                      <property name="row">0</property>
+                    </layout>
+                    <child>
+                      <object class="ttk.Entry" id="txtBalance">
+                        <property name="justify">left</property>
+                        <property name="text" translatable="yes">1000</property>
+                        <property name="validate">key</property>
+                        <layout>
+                          <property name="column">1</property>
+                          <property name="padx">5</property>
+                          <property name="pady">5</property>
+                          <property name="propagate">True</property>
+                          <property name="row">1</property>
+                          <property name="sticky">w</property>
+                        </layout>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="ttk.Label" id="lblSetBalance">
+                        <property name="text" translatable="yes">Set Balance (USD): $</property>
+                        <layout>
+                          <property name="column">0</property>
+                          <property name="padx">0</property>
+                          <property name="pady">5</property>
+                          <property name="propagate">True</property>
+                          <property name="row">1</property>
+                          <property name="sticky">e</property>
+                        </layout>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="ttk.Label" id="lblTip1">
+                        <property name="text" translatable="yes">Press the update button above to confirm your changes.</property>
+                        <layout>
+                          <property name="column">0</property>
+                          <property name="columnspan">2</property>
+                          <property name="propagate">True</property>
+                          <property name="row">0</property>
+                        </layout>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="ttk.Label" id="lblSellFee">
+                        <property name="text" translatable="yes">Sell Fee(%):</property>
+                        <layout>
+                          <property name="column">0</property>
+                          <property name="padx">5</property>
+                          <property name="pady">5</property>
+                          <property name="propagate">True</property>
+                          <property name="row">2</property>
+                          <property name="sticky">e</property>
+                        </layout>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="ttk.Entry" id="txtSetSellFee">
+                        <property name="justify">left</property>
+                        <property name="text" translatable="yes">0.30</property>
+                        <layout>
+                          <property name="column">1</property>
+                          <property name="padx">5</property>
+                          <property name="pady">5</property>
+                          <property name="propagate">True</property>
+                          <property name="row">2</property>
+                          <property name="sticky">w</property>
+                        </layout>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="ttk.Label" id="lblBuyFee">
+                        <property name="text" translatable="yes">Buy Fee(%):</property>
+                        <layout>
+                          <property name="column">0</property>
+                          <property name="padx">5</property>
+                          <property name="pady">5</property>
+                          <property name="propagate">True</property>
+                          <property name="row">3</property>
+                          <property name="sticky">e</property>
+                        </layout>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="ttk.Entry" id="txtSetBuyFee">
+                        <property name="text" translatable="yes">0.30</property>
+                        <property name="validate">focus</property>
+                        <layout>
+                          <property name="column">1</property>
+                          <property name="padx">5</property>
+                          <property name="pady">5</property>
+                          <property name="propagate">True</property>
+                          <property name="row">3</property>
+                          <property name="sticky">w</property>
+                        </layout>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="ttk.Separator" id="separator1">
+                        <property name="orient">horizontal</property>
+                        <layout>
+                          <property name="column">0</property>
+                          <property name="columnspan">2</property>
+                          <property name="ipadx">140</property>
+                          <property name="ipady">0</property>
+                          <property name="padx">35</property>
+                          <property name="pady">15</property>
+                          <property name="propagate">True</property>
+                          <property name="row">9</property>
+                          <property name="rowspan">1</property>
+                        </layout>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="ttk.Label" id="Label_5">
+                        <property name="relief">flat</property>
+                        <property name="text" translatable="yes">Browse Files</property>
+                        <layout>
+                          <property name="column">0</property>
+                          <property name="propagate">True</property>
+                          <property name="row">10</property>
+                        </layout>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="ttk.Button" id="btnViewMain">
+                        <property name="command">btnViewMainPressed</property>
+                        <property name="text" translatable="yes">View Main Directory</property>
+                        <layout>
+                          <property name="column">0</property>
+                          <property name="padx">5</property>
+                          <property name="pady">5</property>
+                          <property name="propagate">True</property>
+                          <property name="row">11</property>
+                          <property name="sticky">e</property>
+                        </layout>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="ttk.Button" id="btnViewDatasets">
+                        <property name="command">btnViewDatasetsPressed</property>
+                        <property name="text" translatable="yes">View Datasets</property>
+                        <layout>
+                          <property name="column">0</property>
+                          <property name="padx">5</property>
+                          <property name="pady">5</property>
+                          <property name="propagate">True</property>
+                          <property name="row">12</property>
+                          <property name="sticky">e</property>
+                        </layout>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="ttk.Button" id="btnViewMarketData">
+                        <property name="command">btnViewMarketDataPressed</property>
+                        <property name="text" translatable="yes">View Marketdata</property>
+                        <layout>
+                          <property name="column">1</property>
+                          <property name="padx">5</property>
+                          <property name="pady">5</property>
+                          <property name="propagate">True</property>
+                          <property name="row">12</property>
+                          <property name="sticky">w</property>
+                        </layout>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="ttk.Button" id="btnViewTradeLogs">
+                        <property name="command">btnViewTradeLogsPressed</property>
+                        <property name="text" translatable="yes">View Trade Logs</property>
+                        <layout>
+                          <property name="column">1</property>
+                          <property name="padx">5</property>
+                          <property name="pady">5</property>
+                          <property name="propagate">True</property>
+                          <property name="row">11</property>
+                          <property name="sticky">w</property>
+                        </layout>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="ttk.Combobox" id="dropdownEnableLogging">
+                        <property name="exportselection">false</property>
+                        <property name="values">True False</property>
+                        <property name="width">10</property>
+                        <layout>
+                          <property name="column">1</property>
+                          <property name="padx">5</property>
+                          <property name="pady">5</property>
+                          <property name="propagate">True</property>
+                          <property name="row">5</property>
+                          <property name="sticky">w</property>
+                        </layout>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="ttk.Label" id="lblEnableLogging">
+                        <property name="text" translatable="yes">Enable Logging:</property>
+                        <layout>
+                          <property name="column">0</property>
+                          <property name="padx">5</property>
+                          <property name="pady">5</property>
+                          <property name="propagate">True</property>
+                          <property name="row">5</property>
+                          <property name="sticky">e</property>
+                        </layout>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+    <child>
+      <object class="ttk.Frame" id="Results">
+        <property name="height">200</property>
+        <property name="padding">5</property>
+        <property name="relief">groove</property>
+        <property name="width">200</property>
+        <layout>
+          <property name="column">1</property>
+          <property name="propagate">True</property>
+          <property name="row">0</property>
+          <property name="rowspan">3</property>
+          <property name="sticky">nw</property>
+        </layout>
+        <child>
+          <object class="ttk.Label" id="lblResultsChosenMarketData">
+            <property name="text" translatable="yes">Testing on:</property>
+            <layout>
+              <property name="column">0</property>
+              <property name="propagate">True</property>
+              <property name="row">1</property>
+              <property name="sticky">w</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="ttk.Label" id="lblResultsTitle">
+            <property name="text" translatable="yes">
+RESULTS:
+</property>
+            <layout>
+              <property name="column">0</property>
+              <property name="columnspan">2</property>
+              <property name="propagate">False</property>
+              <property name="row">0</property>
+              <property name="sticky">s</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="tk.Message" id="msgResultsChosenMarketData">
+            <property name="background">#ffffff</property>
+            <property name="justify">right</property>
+            <property name="text" translatable="yes">no file selected</property>
+            <property name="width">150</property>
+            <layout>
+              <property name="column">1</property>
+              <property name="propagate">True</property>
+              <property name="row">2</property>
+              <property name="sticky">e</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="ttk.Label" id="lblResultStartBalance">
+            <property name="text" translatable="yes">Starting Balance of:</property>
+            <layout>
+              <property name="column">0</property>
+              <property name="propagate">True</property>
+              <property name="row">8</property>
+              <property name="sticky">w</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="tk.Message" id="msgResultsStartBalance">
+            <property name="background">#ffffff</property>
+            <property name="text" translatable="yes">$0</property>
+            <property name="width">100</property>
+            <layout>
+              <property name="column">1</property>
+              <property name="propagate">True</property>
+              <property name="row">9</property>
+              <property name="sticky">e</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="ttk.Label" id="lblResultsFinalBalance">
+            <property name="text" translatable="yes">Final Balance of:</property>
+            <layout>
+              <property name="column">0</property>
+              <property name="propagate">True</property>
+              <property name="row">10</property>
+              <property name="sticky">w</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="tk.Message" id="msgResultsFinalBalance">
+            <property name="background">#ffffff</property>
+            <property name="pady">0</property>
+            <property name="text" translatable="yes">$0</property>
+            <property name="width">100</property>
+            <layout>
+              <property name="column">1</property>
+              <property name="propagate">True</property>
+              <property name="row">11</property>
+              <property name="sticky">e</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="ttk.Label" id="lblResultsProfit">
+            <property name="borderwidth">2</property>
+            <property name="text" translatable="yes">Profit:</property>
+            <layout>
+              <property name="column">0</property>
+              <property name="propagate">True</property>
+              <property name="row">21</property>
+              <property name="sticky">w</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="tk.Message" id="msgResultsProfit">
+            <property name="background">#ffffff</property>
+            <property name="justify">right</property>
+            <property name="text" translatable="yes">$0</property>
+            <property name="width">100</property>
+            <layout>
+              <property name="column">0</property>
+              <property name="columnspan">2</property>
+              <property name="ipadx">100</property>
+              <property name="propagate">True</property>
+              <property name="row">22</property>
+              <property name="sticky">e</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="ttk.Separator" id="Separator_2">
+            <property name="orient">horizontal</property>
+            <layout>
+              <property name="column">0</property>
+              <property name="columnspan">2</property>
+              <property name="ipadx">100</property>
+              <property name="ipady">0</property>
+              <property name="pady">10</property>
+              <property name="propagate">True</property>
+              <property name="row">20</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="ttk.Label" id="lblMarketStartPrice">
+            <property name="text" translatable="yes">Initial Market Price</property>
+            <layout>
+              <property name="column">0</property>
+              <property name="propagate">True</property>
+              <property name="row">31</property>
+              <property name="sticky">w</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="tk.Message" id="msgMarketStartPrice">
+            <property name="background">#ffffff</property>
+            <property name="text" translatable="yes">$0</property>
+            <property name="width">300</property>
+            <layout>
+              <property name="column">1</property>
+              <property name="propagate">True</property>
+              <property name="row">32</property>
+              <property name="sticky">e</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="ttk.Label" id="lblMarketEndPrice">
+            <property name="text" translatable="yes">Final Market Price:</property>
+            <layout>
+              <property name="column">0</property>
+              <property name="propagate">True</property>
+              <property name="row">33</property>
+              <property name="sticky">w</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="tk.Message" id="msgMarketEndPrice">
+            <property name="background">#ffffff</property>
+            <property name="text" translatable="yes">$0</property>
+            <property name="width">300</property>
+            <layout>
+              <property name="column">1</property>
+              <property name="propagate">True</property>
+              <property name="row">34</property>
+              <property name="sticky">e</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="ttk.Label" id="lblMarketChangeInPrice">
+            <property name="text" translatable="yes">Market Change in Price:</property>
+            <layout>
+              <property name="column">0</property>
+              <property name="propagate">True</property>
+              <property name="row">27</property>
+              <property name="sticky">w</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="tk.Message" id="msgMarketChangeInPrice">
+            <property name="background">#ffffff</property>
+            <property name="text" translatable="yes">$0</property>
+            <property name="width">300</property>
+            <layout>
+              <property name="column">1</property>
+              <property name="propagate">True</property>
+              <property name="row">29</property>
+              <property name="sticky">e</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="ttk.Label" id="lblMarketPercentChange">
+            <property name="text" translatable="yes">Percent Market Change:</property>
+            <layout>
+              <property name="column">0</property>
+              <property name="propagate">True</property>
+              <property name="row">25</property>
+              <property name="sticky">w</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="tk.Message" id="msgMarketPercentChange">
+            <property name="background">#ffffff</property>
+            <property name="justify">left</property>
+            <property name="text" translatable="yes">0%</property>
+            <property name="width">400</property>
+            <layout>
+              <property name="column">1</property>
+              <property name="propagate">True</property>
+              <property name="row">26</property>
+              <property name="sticky">e</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="ttk.Label" id="lblProfitPercentChange">
+            <property name="text" translatable="yes">Percent Profit:</property>
+            <layout>
+              <property name="column">0</property>
+              <property name="propagate">True</property>
+              <property name="row">23</property>
+              <property name="sticky">w</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="tk.Message" id="msgProfitPercentChange">
+            <property name="background">#ffffff</property>
+            <property name="text" translatable="yes">0%</property>
+            <property name="width">300</property>
+            <layout>
+              <property name="column">1</property>
+              <property name="propagate">True</property>
+              <property name="row">24</property>
+              <property name="sticky">e</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="ttk.Label" id="lblDateRange">
+            <property name="text" translatable="yes">Date Range:</property>
+            <layout>
+              <property name="column">0</property>
+              <property name="propagate">True</property>
+              <property name="row">3</property>
+              <property name="sticky">w</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="tk.Message" id="msgDateRange">
+            <property name="background">#ffffff</property>
+            <property name="justify">left</property>
+            <property name="text" translatable="yes">From: 11/3/2019
+To:   11/15/2019</property>
+            <property name="width">500</property>
+            <layout>
+              <property name="column">1</property>
+              <property name="propagate">True</property>
+              <property name="row">4</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="ttk.Label" id="lblRowsInData">
+            <property name="text" translatable="yes">Number of Rows in Data (Days):</property>
+            <layout>
+              <property name="column">0</property>
+              <property name="propagate">True</property>
+              <property name="row">5</property>
+              <property name="sticky">w</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="tk.Message" id="msgRowsInData">
+            <property name="background">#ffffff</property>
+            <property name="text" translatable="yes">0</property>
+            <property name="width">300</property>
+            <layout>
+              <property name="column">1</property>
+              <property name="propagate">True</property>
+              <property name="row">6</property>
+              <property name="sticky">e</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="ttk.Label" id="lblProfitPerDay">
+            <property name="text" translatable="yes">Profit Per Day:</property>
+            <layout>
+              <property name="column">0</property>
+              <property name="propagate">True</property>
+              <property name="row">35</property>
+              <property name="sticky">w</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="tk.Message" id="msgProfitPerDay">
+            <property name="background">#ffffff</property>
+            <property name="text" translatable="yes">$0</property>
+            <property name="width">100</property>
+            <layout>
+              <property name="column">1</property>
+              <property name="propagate">True</property>
+              <property name="row">36</property>
+              <property name="sticky">e</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="ttk.Label" id="lblViewLogTip">
+            <property name="background">#ffffff</property>
+            <property name="padding">5</property>
+            <property name="relief">ridge</property>
+            <property name="text" translatable="yes">Want to see a list of all the trades this strategy made?
+
+Go to the log folder and open the .csv with the matching date, time, and asset. You can find more links to the data this application uses in the options menu.</property>
+            <property name="wraplength">250</property>
+            <layout>
+              <property name="column">0</property>
+              <property name="columnspan">2</property>
+              <property name="propagate">True</property>
+              <property name="row">37</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="ttk.Button" id="btnViewTradeLogs_2">
+            <property name="command">btnViewTradeLogsPressed</property>
+            <property name="text" translatable="yes">View Trade Logs</property>
+            <layout>
+              <property name="column">0</property>
+              <property name="columnspan">2</property>
+              <property name="padx">5</property>
+              <property name="pady">5</property>
+              <property name="propagate">True</property>
+              <property name="row">38</property>
+            </layout>
+          </object>
+        </child>
+      </object>
+    </child>
+    <child>
+      <object class="ttk.Frame" id="frameStrategyControls">
+        <property name="height">200</property>
+        <property name="width">200</property>
+        <layout>
+          <property name="column">0</property>
+          <property name="propagate">True</property>
+          <property name="row">2</property>
+          <property name="sticky">n</property>
+        </layout>
+        <child>
+          <object class="ttk.Button" id="btnTest">
+            <property name="command">btnTestPressed</property>
+            <property name="default">normal</property>
+            <property name="text" translatable="yes">Simulate Strategy	</property>
+            <property name="width">27</property>
+            <layout>
+              <property name="column">0</property>
+              <property name="columnspan">2</property>
+              <property name="pady">5</property>
+              <property name="propagate">True</property>
+              <property name="row">0</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="ttk.Button" id="btnResetStrat">
+            <property name="command">btnResetStrategyPressed</property>
+            <property name="text" translatable="yes">Reset Strategy</property>
+            <layout>
+              <property name="column">0</property>
+              <property name="propagate">True</property>
+              <property name="row">5</property>
+              <property name="sticky">e</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="ttk.Button" id="btnLoadStrat">
+            <property name="command">btnLoadStratPressed</property>
+            <property name="text" translatable="yes">Load Saved Strategy</property>
+            <layout>
+              <property name="column">1</property>
+              <property name="propagate">True</property>
+              <property name="row">6</property>
+              <property name="sticky">w</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="ttk.Button" id="btnRandomStrat">
+            <property name="command">btnRandomStratPressed</property>
+            <property name="text" translatable="yes">Load Random Strategy</property>
+            <layout>
+              <property name="column">1</property>
+              <property name="propagate">True</property>
+              <property name="row">5</property>
+              <property name="sticky">w</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="ttk.Button" id="btnSaveStrat">
+            <property name="command">btnSaveStratPressed</property>
+            <property name="text" translatable="yes">Save Strategy</property>
+            <layout>
+              <property name="column">0</property>
+              <property name="propagate">True</property>
+              <property name="row">6</property>
+              <property name="sticky">e</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="ttk.Separator" id="Separator_1">
+            <property name="orient">horizontal</property>
+            <layout>
+              <property name="column">0</property>
+              <property name="columnspan">2</property>
+              <property name="ipadx">120</property>
+              <property name="pady">5</property>
+              <property name="propagate">True</property>
+              <property name="row">4</property>
+            </layout>
+          </object>
+        </child>
+      </object>
+    </child>
+  </object>
+</interface>
