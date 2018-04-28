@@ -11,10 +11,12 @@ import tkinter as tk
 import pygubu
 import pandas as pd
 
+
+def setNotification(self, newNotification):
+    self.builder.get_object("lblNotifications")['text']=newNotification
 def getMarketDataFileNames():
-    #this collects all file names that end with "marketdata.csv" in
+    # this collects all file names that end with "marketdata.csv" in
     #the marketdata folder
-    #print("getting market data")
     import glob
     import os
     os.chdir("marketdata")
@@ -27,6 +29,14 @@ def getMarketDataIndex(self,filename):
         if(dataFiles[i]==filename):
             return i
     return -1
+
+def resetStrategy(self):
+    dataset = self.builder.get_object("dropdownData").get()
+    buyT = [0, 0, 0, 0, 0, 0, 0, 0]
+    sellT = [0, 0, 0, 0, 0, 0, 0, 0]
+    buyU = [0, 0, 0, 0, 0, 0, 0, 0]
+    sellU = [0, 0, 0, 0, 0, 0, 0, 0]
+    loadStrategy(self, dataset, buyT, buyU, sellT, sellU)
 def openDirectory(directoryName):
     import os
     workingDirectory = os.getcwd()
@@ -34,25 +44,19 @@ def openDirectory(directoryName):
     directoryCommand = str("explorer "+workingDirectory+"\\"+ directoryName)
     subprocess.Popen(directoryCommand)
 
-def saveStrategy(saveString,profPerDay):
-    #print("preparing to save to file..")
-
-    #print("Current save string: \n")
-    #print(saveString)    
-
+def saveStrategy(self,saveString,profPerDay):
     import datetime
     dt = str(datetime.datetime.now())
     symb = saveString[0:3]
     saveName = "SAVE "+dt[0:19]+" "+symb+" "+profPerDay+" PER DAY.STRAT"
     saveName = saveName.replace(":","-")
     #print("Saving with name: ",saveName," ..")
-
-    saveFile = open("saved strategies/"+saveName, "w")
+    saveName = "saved strategies/"+saveName
+    saveFile = open(saveName, "w")
     saveFile.write(saveString)
     saveFile.close()
-
+    setNotification(self,"Saving strategy with name:\n/"+saveName)
 def loadStrategy(self,dataset,buyT,buyU,sellT,sellU):
-        
         self.builder.get_object("dropdownData").current(getMarketDataIndex(self,dataset))
         #set sliders and dropdowns
         self.builder.get_object("dropdownBuyMACD").current(buyU[0])
@@ -75,37 +79,23 @@ def loadStrategy(self,dataset,buyT,buyU,sellT,sellU):
         
         
         self.builder.get_object("sliderBuyMACD").set(buyT[0])
-        
         self.builder.get_object("sliderBuySTF").set(buyT[1])
-        
         self.builder.get_object("sliderBuySTS").set(buyT[2])
-        
         self.builder.get_object("sliderBuySTV").set(buyT[3])
-        
         self.builder.get_object("sliderBuySMI").set(buyT[4])
-        
         self.builder.get_object("sliderBuyRSI").set(buyT[5])
-        
         self.builder.get_object("sliderBuyDMI_DX").set(buyT[6])
-        
         self.builder.get_object("sliderBuyDMI_ADX").set(buyT[7])
-        
         self.builder.get_object("sliderSellMACD").set(sellT[0])
-        
         self.builder.get_object("sliderSellSTF").set(sellT[1])
-        
         self.builder.get_object("sliderSellSTS").set(sellT[2])
-        
         self.builder.get_object("sliderSellSTV").set(sellT[3])
-        
         self.builder.get_object("sliderSellSMI").set(sellT[4])
-        
         self.builder.get_object("sliderSellRSI").set(sellT[5])
-        
         self.builder.get_object("sliderSellDMI_DX").set(sellT[6])
-        
         self.builder.get_object("sliderSellDMI_ADX").set(sellT[7])
-        #print("strat loaded")
+
+
             
         
         
@@ -152,10 +142,6 @@ def updateSliders(self):
         self.builder.get_object("sliderSellDMI_ADX")['from_']=minValues[7]
         self.builder.get_object("sliderSellDMI_ADX")['to']=maxValues[7]
 
-        #print("Slider Min and Max Values Have Been Updated:")
-        #print(minValues)
-        #print(maxValues)
-
 
 class Interface:
     
@@ -196,8 +182,8 @@ class Interface:
         
 
         #update slider to first marketdata
-        updateSliders(self)        
-        
+        updateSliders(self)
+        resetStrategy(self)
         
 
         
@@ -207,7 +193,7 @@ class Interface:
     # START BUTTON CALLBACK FUNCTIONS
     def btnSaveStratPressed(self):
         self.btnTestPressed()#run strat to make sure all values reflect current parameters
-        #print("Saving Strategy..")
+
         
         #collect the usage paramters for buying from the 7 dropdown s
         dropdownValueBuy[0]=self.builder.get_object("dropdownBuyMACD").get()
@@ -272,9 +258,7 @@ class Interface:
             saveString += ","+str(dropdownValueSell[i])
         
         
-        saveStrategy(saveString,profPerDay)
-        
-        
+        saveStrategy(self,saveString,profPerDay)
     def btnLoadStratPressed(self):
         from tkinter.filedialog import askopenfilename
         #print("Loading Strategy..")
@@ -308,14 +292,15 @@ class Interface:
                 #print("sellU: ",sellU)
 
                 loadStrategy(self,dataset,buyT,buyU,sellT,buyU)
+                setNotification(self,"Loaded strategy: \n"+savename)
         except:
-            print("No file selected or invalid file selected.")
+            setNotification(self,"No file selected or invalid file selected.")
     def btnUpdatePressed(self):        
         updateSliders(self)
+
+        setNotification(self,"Slider values updated for new marketdata:\n"+self.builder.get_object("dropdownData").get())
     def btnRandomStratPressed(self):
         updateSliders(self)
-        #print("min vals ",minValues)
-        #print("max vals ",maxValues)
         import random
         dataset = self.builder.get_object("dropdownData").get()
         buyT = [0,0,0,0,0,0,0,0]
@@ -327,26 +312,48 @@ class Interface:
             buyU [i] = random.randint(0,2)
             sellT [i] = random.randint(minValues[i],maxValues[i])
             sellU[i] = random.randint(0,2)
-        #print(dataset)
-        #print(buyT)
-        #print(buyU)
-        #print(sellT)
-        #print(sellU)
+
 
         loadStrategy(self,dataset,buyT,buyU,sellT,sellU)
-        
+        setNotification(self,"Random strategy generated.")
+
+    def btnHillClimbPressed(self):
+
+        updateSliders(self)
+        hillCount = self.builder.get_object("txtHillCount").get()
+        try:
+            hillCount = int(hillCount)
+
+            if(hillCount<1):
+                hillCount = 1
+                setNotification(self,"Can't have negative hill count, setting to default value.\n\nHill climbing complete. Best hill of "+str(hillCount) +" hills climbed has been loaded, press simulate strategy to run." )
+
+            else:
+                setNotification(self, "Hill climbing complete. Best hill of "+str(hillCount) +" hills climbed has been loaded, press simulate strategy to run." )
+        except:
+            setNotification(self,"Invalid number entered. Setting Hill Count to default value.\n\nHill climbing complete. Best hill of "+str(hillCount) +" hills climbed has been loaded, press simulate strategy to run." )
+            hillCount = 1
+            self.builder.get_object("txtHillCount").delete(0, 1000)
+            self.builder.get_object("txtHillCount").insert(0,str(hillCount))
+
+        import hillClimber
+        #print("\n\n-----ON HILL #1--------")
+        bestLocalOpt = hillClimber.climbRandomHill(self,minValues,maxValues)
+        currentHigh = bestLocalOpt[4]
+        for i in range(1,hillCount):
+            #print("\n\n-----ON HILL #",str(i+2),"--------")
+            localOpt = hillClimber.climbRandomHill(self,minValues,maxValues)
+            if(localOpt[4]>currentHigh):
+                currentHigh = localOpt[4]
+                bestLocalOpt = localOpt
+        loadStrategy(self,self.builder.get_object("dropdownData").get(),bestLocalOpt[0],bestLocalOpt[1],bestLocalOpt[2],bestLocalOpt[3])
+
 
     def btnResetStrategyPressed(self):
-        #print("reset strat pressed")
-        dataset = self.builder.get_object("dropdownData").get()
-        buyT = [0,0,0,0,0,0,0,0]
-        sellT = [0,0,0,0,0,0,0,0]
-        buyU = [0,0,0,0,0,0,0,0]
-        sellU = [0,0,0,0,0,0,0,0]
-        loadStrategy(self,dataset,buyT,buyU,sellT,sellU)
-        #print("reset strat")
+        resetStrategy(self)
+        setNotification(self,"Strategy reset.")
     def btnTestPressed(self):
-        updateSliders(self)#update the min and max of each slider for the currently selected market data
+
         
         #collect the usage paramters for buying from the 7 dropdown s
         dropdownValueBuy[0]=self.builder.get_object("dropdownBuyMACD").get()
@@ -396,59 +403,50 @@ class Interface:
             else:
                 #print("INVALID USAGE VALUE: ",dropdownValueSell[i])
                 return
-        
-        #at this point, collecting the trading strategy from the UI
-        #is now complete. We can begin testing the strategy using
-        #my backtesting engine: "backtest.py" in main directory 
 
-        
-        ##print strategy so i can see if it's indeed correct
-        #print("Buy Usage: ",dropdownValueBuy)
-        #print("Buy Threshold: ",sliderValueBuy)
-        #print("Sell Usage: ",dropdownValueSell)
-        #print("Sell Threshold: ", sliderValueSell)
-
-        #import backtest.py 
         import backtest
 
-        #get the selected file name from the marketdata drop down so
-        #we know which file to test on.
         selectedMarketdataFile = self.builder.get_object("dropdownData").get()
 
-        #debug info so i know what is being passed in to the backtest
-        #print("Marketdata File=",selectedMarketdataFile)    
-        #print(initialBalance)
-        #print(sliderValueBuy)
-        #print(dropdownValueBuy)        
-        #print(sliderValueSell)
-        #print(dropdownValueSell)
 
-        startingBalance = 0
         #test strategy (it returns the value of the users new balance after the test)
         try:
             startingBalance = float(self.builder.get_object("txtBalance").get())
             feeBuy = float(self.builder.get_object("txtSetBuyFee").get())
             feeSell = float(self.builder.get_object("txtSetSellFee").get())
-            if(feeBuy<0):
+            if (startingBalance < 0):
+                startingBalance = 1000
+                self.builder.get_object("txtBalance").delete(0, 1000)
+                self.builder.get_object("txtBalance").insert(0, "1000")
+                #print("starting balance cant be negative")
+            if (feeBuy < 0):
+                self.builder.get_object("txtSetBuyFee").delete(0, 1000)
+                self.builder.get_object("txtSetBuyFee").insert(0, ".30")
                 feeBuy = .3
                 #print("FEE CANNOT BE A NEGATIVE VALUE")
-            if(feeSell<0):
-                feeSell =.3
+            if (feeSell < 0):
+                self.builder.get_object("txtSetSellFee").insert(0, ".30")
+                self.builder.get_object("txtSetSellFee").insert(0, ".30")
+                feeSell = .3
                 #print("FEE CANNOT BE A NEGATIVE VALUE")
         except:
             feeBuy = .3
             feeSell = .3
-            #print("invalid value entered for balance, buy fee, and/or sell fee")
-            self.builder.get_object("txtBalance")['text']= ""
-            self.builder.get_object("txtSetBuyFee")['text']= ""
-            self.builder.get_object("txtSetSellFee")['text']= ""
             startingBalance = 1000
+            #print("invalid value entered for balance, buy fee, and/or sell fee")
+            self.builder.get_object("txtBalance").delete(0, 1000)
+            self.builder.get_object("txtSetBuyFee").delete(0, 1000)
+            self.builder.get_object("txtSetSellFee").delete(0, 1000)
+            self.builder.get_object("txtBalance").insert(0,"1000")
+            self.builder.get_object("txtSetBuyFee").insert(0,".30")
+            self.builder.get_object("txtSetSellFee").insert(0,".30")
+
         #print("start bal__",startingBalance)
 
         
         isLoggingEnabled = self.builder.get_object("dropdownEnableLogging").get()=="True"
-        newBalance = backtest.testStrategy(str("marketdata/"+selectedMarketdataFile),False,isLoggingEnabled,feeBuy/100,feeSell/100,startingBalance,sliderValueBuy,dropdownValueBuy,sliderValueSell,dropdownValueSell)
-        
+        bt = backtest.testStrategy(str("marketdata/"+selectedMarketdataFile),False,isLoggingEnabled,feeBuy,feeSell,startingBalance,sliderValueBuy,dropdownValueBuy,sliderValueSell,dropdownValueSell)
+        newBalance = bt[0]
         
           
         #calculate profit and show
@@ -468,21 +466,15 @@ class Interface:
 
         numberOfRows = backtest.getNumberOfRows(str("marketdata/"+selectedMarketdataFile))
         self.builder.get_object("msgRowsInData")['text']=str(numberOfRows)
-        marketStartPrice = backtest.getStartPrice(str("marketdata/"+selectedMarketdataFile))
-        marketEndPrice = backtest.getEndPrice(str("marketdata/"+selectedMarketdataFile))
+        marketStartPrice = round(backtest.getStartPrice(str("marketdata/"+selectedMarketdataFile)),2)
+        marketEndPrice = round(backtest.getEndPrice(str("marketdata/"+selectedMarketdataFile)),2)
         marketChangeInPrice = round(marketEndPrice - marketStartPrice,2)
-        percProfit = round(profit / startingBalance*100,2)
+        percBalChange = round(newBalance / startingBalance*100,2)
         percMarket = round(marketEndPrice / marketStartPrice * 100,2)
         marketStartDate = backtest.getStartDate((str("marketdata/"+selectedMarketdataFile)))
         marketEndDate = backtest.getEndDate((str("marketdata/"+selectedMarketdataFile)))
         profitPerDay = round(profit / numberOfRows,2)
-        #print("market % chg: ",percMarket)
-        #print("market start: ",marketStartPrice)
-        #print("market end:   ",marketEndPrice)
-        #print("profit per day: ",profitPerDay)
-        #print("profit: ",profit)
-        #print("num days: ",numberOfRows)
-        self.builder.get_object("msgProfitPercentChange")['text']= str(percProfit)+"%"
+        self.builder.get_object("msgBalancePercentChange")['text']= str(percBalChange)+"%"
         self.builder.get_object("msgMarketPercentChange")['text']= str(percMarket)+"%"
         self.builder.get_object("msgMarketChangeInPrice")['text']="$"+str(marketChangeInPrice)
         self.builder.get_object("msgMarketStartPrice")['text']= "$"+str(marketStartPrice)
@@ -490,6 +482,8 @@ class Interface:
         
         self.builder.get_object("msgProfitPerDay")['text']= "$"+str(profitPerDay)
         self.builder.get_object("msgDateRange")['text']= str("From: "+str(marketStartDate)+"\nTo:   "+str(marketEndDate))
+        self.builder.get_object("msgNumberOfTrades")['text']=str(bt[1])
+        setNotification(self, "Strategy has been simulated.\n\nPlease find the updated results of your strategy in the results panel.")
     def sliderUpdateBuy0(self,x):
         sliderValueBuy[0] = self.builder.get_variable("sliderBuyval0")
         sliderValueBuy[0] = int(sliderValueBuy[0].get())

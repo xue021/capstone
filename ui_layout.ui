@@ -11,16 +11,16 @@
       <property name="propagate">True</property>
       <property name="row">0</property>
       <property name="sticky">nw</property>
-      <columns>
-        <column id="0">
-          <property name="minsize">5</property>
-        </column>
-      </columns>
       <rows>
         <row id="0">
           <property name="minsize">5</property>
         </row>
       </rows>
+      <columns>
+        <column id="0">
+          <property name="minsize">5</property>
+        </column>
+      </columns>
     </layout>
     <child>
       <object class="ttk.Frame" id="Top">
@@ -1257,7 +1257,7 @@ RESULTS:
             <layout>
               <property name="column">0</property>
               <property name="propagate">True</property>
-              <property name="row">8</property>
+              <property name="row">10</property>
               <property name="sticky">w</property>
             </layout>
           </object>
@@ -1270,7 +1270,7 @@ RESULTS:
             <layout>
               <property name="column">1</property>
               <property name="propagate">True</property>
-              <property name="row">9</property>
+              <property name="row">11</property>
               <property name="sticky">e</property>
             </layout>
           </object>
@@ -1281,7 +1281,7 @@ RESULTS:
             <layout>
               <property name="column">0</property>
               <property name="propagate">True</property>
-              <property name="row">10</property>
+              <property name="row">12</property>
               <property name="sticky">w</property>
             </layout>
           </object>
@@ -1295,7 +1295,7 @@ RESULTS:
             <layout>
               <property name="column">1</property>
               <property name="propagate">True</property>
-              <property name="row">11</property>
+              <property name="row">13</property>
               <property name="sticky">e</property>
             </layout>
           </object>
@@ -1440,8 +1440,8 @@ RESULTS:
           </object>
         </child>
         <child>
-          <object class="ttk.Label" id="lblProfitPercentChange">
-            <property name="text" translatable="yes">Percent Profit:</property>
+          <object class="ttk.Label" id="lblBalancePercentChange">
+            <property name="text" translatable="yes">Percent Balance Change:</property>
             <layout>
               <property name="column">0</property>
               <property name="propagate">True</property>
@@ -1451,7 +1451,7 @@ RESULTS:
           </object>
         </child>
         <child>
-          <object class="tk.Message" id="msgProfitPercentChange">
+          <object class="tk.Message" id="msgBalancePercentChange">
             <property name="background">#ffffff</property>
             <property name="text" translatable="yes">0%</property>
             <property name="width">300</property>
@@ -1567,10 +1567,33 @@ Go to the log folder and open the .csv with the matching date, time, and asset. 
             </layout>
           </object>
         </child>
+        <child>
+          <object class="ttk.Label" id="lblNumberOfTrades">
+            <property name="text" translatable="yes">Total Number of Trades:</property>
+            <layout>
+              <property name="column">0</property>
+              <property name="propagate">True</property>
+              <property name="row">7</property>
+              <property name="sticky">w</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="tk.Message" id="msgNumberOfTrades">
+            <property name="background">#ffffff</property>
+            <property name="text" translatable="yes">0</property>
+            <layout>
+              <property name="column">1</property>
+              <property name="propagate">True</property>
+              <property name="row">8</property>
+              <property name="sticky">e</property>
+            </layout>
+          </object>
+        </child>
       </object>
     </child>
     <child>
-      <object class="ttk.Frame" id="frameStrategyControls">
+      <object class="ttk.Frame" id="StrategyControls">
         <property name="height">200</property>
         <property name="width">200</property>
         <layout>
@@ -1587,7 +1610,7 @@ Go to the log folder and open the .csv with the matching date, time, and asset. 
             <property name="width">27</property>
             <layout>
               <property name="column">0</property>
-              <property name="columnspan">2</property>
+              <property name="columnspan">3</property>
               <property name="pady">5</property>
               <property name="propagate">True</property>
               <property name="row">0</property>
@@ -1599,10 +1622,10 @@ Go to the log folder and open the .csv with the matching date, time, and asset. 
             <property name="command">btnResetStrategyPressed</property>
             <property name="text" translatable="yes">Reset Strategy</property>
             <layout>
-              <property name="column">0</property>
+              <property name="column">2</property>
+              <property name="pady">5</property>
               <property name="propagate">True</property>
               <property name="row">5</property>
-              <property name="sticky">e</property>
             </layout>
           </object>
         </child>
@@ -1612,21 +1635,21 @@ Go to the log folder and open the .csv with the matching date, time, and asset. 
             <property name="text" translatable="yes">Load Saved Strategy</property>
             <layout>
               <property name="column">1</property>
+              <property name="pady">5</property>
               <property name="propagate">True</property>
-              <property name="row">6</property>
-              <property name="sticky">w</property>
+              <property name="row">5</property>
             </layout>
           </object>
         </child>
         <child>
           <object class="ttk.Button" id="btnRandomStrat">
             <property name="command">btnRandomStratPressed</property>
-            <property name="text" translatable="yes">Load Random Strategy</property>
+            <property name="text" translatable="yes">Generate Random Strategy</property>
             <layout>
               <property name="column">1</property>
+              <property name="pady">5</property>
               <property name="propagate">True</property>
-              <property name="row">5</property>
-              <property name="sticky">w</property>
+              <property name="row">7</property>
             </layout>
           </object>
         </child>
@@ -1636,9 +1659,9 @@ Go to the log folder and open the .csv with the matching date, time, and asset. 
             <property name="text" translatable="yes">Save Strategy</property>
             <layout>
               <property name="column">0</property>
+              <property name="pady">5</property>
               <property name="propagate">True</property>
-              <property name="row">6</property>
-              <property name="sticky">e</property>
+              <property name="row">5</property>
             </layout>
           </object>
         </child>
@@ -1647,11 +1670,112 @@ Go to the log folder and open the .csv with the matching date, time, and asset. 
             <property name="orient">horizontal</property>
             <layout>
               <property name="column">0</property>
-              <property name="columnspan">2</property>
+              <property name="columnspan">3</property>
               <property name="ipadx">120</property>
               <property name="pady">5</property>
               <property name="propagate">True</property>
               <property name="row">4</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="ttk.Button" id="btnHillClimb">
+            <property name="command">btnHillClimbPressed</property>
+            <property name="text" translatable="yes">Generate Hill Climbing Strategy</property>
+            <layout>
+              <property name="column">1</property>
+              <property name="pady">5</property>
+              <property name="propagate">True</property>
+              <property name="row">8</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="ttk.Separator" id="Separator_3">
+            <property name="orient">horizontal</property>
+            <layout>
+              <property name="column">0</property>
+              <property name="columnspan">3</property>
+              <property name="ipadx">120</property>
+              <property name="pady">5</property>
+              <property name="propagate">True</property>
+              <property name="row">6</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="ttk.Entry" id="txtHillCount">
+            <property name="justify">right</property>
+            <property name="state">normal</property>
+            <property name="text" translatable="yes">1</property>
+            <property name="validate">none</property>
+            <property name="width">8</property>
+            <layout>
+              <property name="column">1</property>
+              <property name="padx">0</property>
+              <property name="propagate">True</property>
+              <property name="row">9</property>
+              <property name="sticky">e</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="ttk.Label" id="lblHillCount">
+            <property name="text" translatable="yes">Hill Count:</property>
+            <layout>
+              <property name="column">1</property>
+              <property name="ipadx">0</property>
+              <property name="padx">20</property>
+              <property name="propagate">True</property>
+              <property name="row">9</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="ttk.Label" id="lblHillClimberNotice">
+            <property name="text" translatable="yes">NOTE: it's normal for the app to "freeze" when executing hill climbing. It will return results after sometime (increasing hill count greatly increases run time)</property>
+            <property name="wraplength">350</property>
+            <layout>
+              <property name="column">0</property>
+              <property name="columnspan">3</property>
+              <property name="propagate">True</property>
+              <property name="row">10</property>
+            </layout>
+          </object>
+        </child>
+      </object>
+    </child>
+    <child>
+      <object class="ttk.Frame" id="Notifications">
+        <property name="height">50</property>
+        <property name="width">200</property>
+        <layout>
+          <property name="column">0</property>
+          <property name="columnspan">2</property>
+          <property name="propagate">True</property>
+          <property name="row">3</property>
+        </layout>
+        <child>
+          <object class="ttk.Label" id="lblNotifications">
+            <property name="background">#ffffff</property>
+            <property name="font">TkFixedFont</property>
+            <property name="foreground">#000000</property>
+            <property name="justify">left</property>
+            <property name="padding">5</property>
+            <property name="relief">sunken</property>
+            <property name="takefocus">true</property>
+            <property name="text" translatable="yes">Welcome!
+
+To begin: select a dataset (marketdata at the top), add a strategy, and press 'Simulate Strategy'. 
+Performance of the strategy will be shown on the right.</property>
+            <property name="wraplength">600</property>
+            <layout>
+              <property name="column">0</property>
+              <property name="columnspan">2</property>
+              <property name="padx">5</property>
+              <property name="pady">5</property>
+              <property name="propagate">True</property>
+              <property name="row">0</property>
             </layout>
           </object>
         </child>

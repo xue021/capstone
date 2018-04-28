@@ -1,25 +1,21 @@
-#read csv
-
-#get params
-
-#test strat with params
 
 
-#####
-import numpy as np
+
 import pandas as pd
 
 
 
 def testStrategy(file,verbose_mode,loggingEnabled,feeBuy,feeSell, starting_balance,thresholds_buy,thresholds_buy_usage, thresholds_sell,thresholds_sell_usage):
     
-    
+    feeBuy = feeBuy / 100
+    feeSell = feeSell / 100
     data = pd.read_csv(file)
 
     moneySpentOnAsset = 0
     logData = pd.DataFrame(columns=["row", "date","type","price","shares","balance","lastAmountSpent","fee","profit"])
     logDataIndex = 1
     
+    numberOfTrades = 0
 
     if(verbose_mode):
         print("FILENAME:",file)
@@ -38,6 +34,7 @@ def testStrategy(file,verbose_mode,loggingEnabled,feeBuy,feeSell, starting_balan
     for i in  range(0,len(data)):
         if(isHolding==False):
             if(ShouldTrade(data.loc[i,:],thresholds_buy,thresholds_buy_usage)):
+                numberOfTrades += 1
                 if(verbose_mode == True):
                     print("BUYING")
                     print(data.loc[i,:])
@@ -57,6 +54,7 @@ def testStrategy(file,verbose_mode,loggingEnabled,feeBuy,feeSell, starting_balan
                     print("Buy fee taken out: ",feeBuyValue)
         elif(isHolding==True):
             if(ShouldTrade(data.loc[i,:],thresholds_sell,thresholds_sell_usage)):
+                numberOfTrades += 1
                 if(verbose_mode == True):
                     print("SELLING")
                     print(data.loc[i,:])
@@ -79,25 +77,26 @@ def testStrategy(file,verbose_mode,loggingEnabled,feeBuy,feeSell, starting_balan
 
     
     if(isHolding==True):
-                if(verbose_mode == True):
-                    print("Exit Sell: ",sharesHolding,"shares. New balance is: ",balance)
-                isHolding = False
-        
-                
-                balance = balance + sharesHolding*data.loc[i,"close"]
-                #subtract fee
-                feeSellValue = round(balance*feeSell,2)
-                balance = round(balance-feeSellValue,2)
-                if(verbose_mode == True):
-                    print("Sell: ",sharesHolding,"shares. New balance is: ",balance)
-                    print("Sell fee taken out: ",feeSellValue)
-                sharesHolding = 0
+        numberOfTrades += 1
+        if(verbose_mode == True):
+            print("Exit Sell: ",sharesHolding,"shares. New balance is: ",balance)
+        isHolding = False
 
-                #START LOGGING
-                logData.loc[logDataIndex]=[i,data.loc[i,"date"],"sell",data.loc[i,"close"],sharesHolding,balance,moneySpentOnAsset,feeSellValue,balance-moneySpentOnAsset]
-                logDataIndex +=1
 
-                #END LOGGING
+        balance = balance + sharesHolding*data.loc[i,"close"]
+        #subtract fee
+        feeSellValue = round(balance*feeSell,2)
+        balance = round(balance-feeSellValue,2)
+        if(verbose_mode == True):
+            print("Sell: ",sharesHolding,"shares. New balance is: ",balance)
+            print("Sell fee taken out: ",feeSellValue)
+        sharesHolding = 0
+
+        #START LOGGING
+        logData.loc[logDataIndex]=[i,data.loc[i,"date"],"exit sell",data.loc[i,"close"],sharesHolding,balance,moneySpentOnAsset,feeSellValue,balance-moneySpentOnAsset]
+        logDataIndex +=1
+
+        #END LOGGING
 
     if(loggingEnabled and (len(logData)>0)):
         #print("Log Len: ",len(logData))
@@ -108,25 +107,41 @@ def testStrategy(file,verbose_mode,loggingEnabled,feeBuy,feeSell, starting_balan
         logName = logName.replace(":","-")
         #print("Saving log with name: ",logName)
         logData.to_csv("trade logs/"+logName,index=False)
-    return balance
+    return [balance,numberOfTrades]
 
 
 def ShouldTrade(values, thresholds,thresholds_usage):
     vals = values.as_matrix()[2:]
+
     usageCount = 0
-    for i in range(0,len(vals)):
+    for i in range(0,len(thresholds)):
         if(thresholds_usage[i]==1):
             usageCount+=1
+
             if(thresholds[i]<vals.item(i)):
-                return False        
+                #print("failed")
+                return False
+
         elif(thresholds_usage[i]==2):
             usageCount+=1
             if(thresholds[i]>vals.item(i)):
+                #print("failed")
                 return False
+
     #this will only trigger if every value in the usage array is 0 (ignore code)
     if(usageCount==0):
         return False
-    return True    
+
+    #print("Decided it should trade!\nAll of the following were satisfied:\nActual, Threshold")
+    # for i in range(0,len(thresholds)):
+    #     if(thresholds_usage[i]==1):
+    #         print(vals.item(i)," < ",thresholds[i])
+    #     elif(thresholds_usage[i]==2):
+    #         print(vals.item(i), " < ", thresholds[i])
+    #     elif(thresholds_usage[i]==0):
+    #         print("ignored")
+
+    return True
     
 def getStartPrice(filename):
     data = pd.read_csv(filename)
